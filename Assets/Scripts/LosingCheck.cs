@@ -2,23 +2,18 @@
 using System.Collections;
 
 public class LosingCheck : MonoBehaviour {
-	public GUIText gameOver;
+	private UIManager UIManager;
 
-	void Start ()
+	void Awake ()
 	{
-		gameOver = GameObject.Find("GameOver").GetComponent<GUIText> ();
-		gameOver.text = "Game Over!";
-		gameOver.enabled = false;
-		Time.timeScale = 1;
+		UIManager = FindObjectOfType<UIManager>();
 	}
 
 	void OnTriggerStay2D (Collider2D other)
 	{
-		if (other.name == "Player")
+		if (other.CompareTag("Player"))
 		{
-			gameOver.enabled = true;
-			Time.timeScale = 0;
-			gameObject.AddComponent<GameOverScript> ();
+			UIManager.ShowLoseMenu();
 		}
 	}
 }
