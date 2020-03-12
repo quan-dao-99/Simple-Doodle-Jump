@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Quan Dao\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Quan Dao\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Simple-Doodle-Jump.-141087965.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Quan Dao\Documents\Unity Projects\Simple-Doodle-Jump" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="AudioManager.cs" t="Include" />
+          <e p="CameraFollower.cs" t="Include" />
+          <e p="CheckResetCollider.cs" t="Include" />
+          <e p="Destroyer.cs" t="Include" />
+          <e p="GameplayUI.cs" t="Include" />
+          <e p="LosingCheck.cs" t="Include" />
+          <e p="OptionsMenu.cs" t="Include" />
+          <e p="PlayerController.cs" t="Include" />
+          <e p="SaveSystem.cs" t="Include" />
+          <e p="Score.cs" t="Include" />
+          <e p="Sound.cs" t="Include" />
+          <e p="SoundSettings.cs" t="Include" />
+          <e p="Spawner.cs" t="Include" />
+          <e p="Spring.cs" t="Include" />
+          <e p="Switch.cs" t="Include" />
+          <e p="ThemeScript.cs" t="Include" />
+          <e p="UIManager.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Simple-Doodle-Jump.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
