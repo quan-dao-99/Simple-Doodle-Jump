@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ThemeScript : MonoBehaviour {
 	public static ThemeScript instance;
@@ -15,6 +13,5 @@ public class ThemeScript : MonoBehaviour {
 		}
 
 		DontDestroyOnLoad(gameObject);
-		Debug.Log(Application.persistentDataPath + "/sound.settings");
 	}
 }

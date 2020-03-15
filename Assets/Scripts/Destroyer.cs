@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Destroyer : MonoBehaviour {
-	void OnTriggerStay2D (Collider2D other)
-	{
-		if (other.CompareTag("Spring"))
-		{
-			Destroy (other.gameObject);
-		}
-	}
+public class Destroyer : MonoBehaviour
+{
+    [SerializeField] private string springTag;
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag(springTag))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }

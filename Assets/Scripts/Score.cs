@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Score : MonoBehaviour {
-	int score = 0;
-	public Text scoreTxt;
-	
-	// Update is called once per frame
-	void Update () {
-		if (transform.position.y >= score)
-		{
-			score = (int)transform.position.y;
-			scoreTxt.text = "Score: " + score;
-		}
-	}
+public class Score : MonoBehaviour
+{
+    public TextMeshProUGUI scoreTxt;
+
+    private int _score;
+
+    private void Update()
+    {
+        if (!(transform.position.y >= _score)) return;
+
+        _score = (int) transform.position.y;
+        scoreTxt.text = _score.ToString();
+    }
 }

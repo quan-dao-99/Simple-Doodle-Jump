@@ -1,65 +1,49 @@
-﻿using UnityEngine.Audio;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
+    public Slider sfxSlider;
+    public Slider themeSlider;
+    public SoundSettings SoundSettings => soundSettings;
+
     private SoundSettings soundSettings;
-    private float lastMasterSlider = 1;
     private float lastSFXSlider = 1;
     private float lastThemeSlider = 1;
     private AudioSource themeSource;
-    public Slider masterSlider;
-    public Slider sfxSlider;
-    public Slider themeSlider;
-    // public GameplayUI gameplayUI;
 
     private void Awake()
     {
-        LoadSoundSettings();
+        soundSettings = SaveSystem.LoadSoundSettings();
     }
 
-    private void LoadSoundSettings()
+    private void Start()
     {
-        if (isFileAvailable())
-        {
-            // OptionsMenu optionsMenu = FindObjectOfType<OptionsMenu>();
+        if (!IsFileAvailable()) return;
+        
+        sfxSlider.value = soundSettings.sfxSlider;
+        themeSlider.value = soundSettings.themeSlider;
 
-            masterSlider.value = soundSettings.masterSlider;
-            sfxSlider.value = soundSettings.sfxSlider;
-            themeSlider.value = soundSettings.themeSlider;
-
-            lastMasterSlider = soundSettings.masterSlider;
-            lastSFXSlider = soundSettings.sfxSlider;
-            lastThemeSlider = soundSettings.themeSlider;
-        }
+        lastSFXSlider = soundSettings.sfxSlider;
+        lastThemeSlider = soundSettings.themeSlider;
     }
 
     public void SaveSoundSettings()
     {
-        lastMasterSlider = masterSlider.value;
         lastSFXSlider = sfxSlider.value;
         lastThemeSlider = themeSlider.value;
-        SaveSystem.SaveSoundSettings(masterSlider.value, sfxSlider.value, themeSlider.value);
+        SaveSystem.SaveSoundSettings(sfxSlider.value, themeSlider.value);
     }
 
     public void ResetSound()
     {
-        // if (isFileAvailable())
-        // {
-            OptionsMenu optionsMenu = FindObjectOfType<OptionsMenu>();
-			optionsMenu.ResetSoundSettings(lastMasterSlider, lastSFXSlider, lastThemeSlider);
-        // }
+        var optionsMenu = FindObjectOfType<OptionsMenu>();
+        optionsMenu.ResetSoundSettings(lastSFXSlider, lastThemeSlider);
     }
 
-    private bool isFileAvailable()
+    private bool IsFileAvailable()
     {
-        soundSettings = SaveSystem.LoadSoundSettings();
-        if (soundSettings == null)
-        {
-            return false;
-        }
-        return true;
+        return soundSettings != null;
     }
 }

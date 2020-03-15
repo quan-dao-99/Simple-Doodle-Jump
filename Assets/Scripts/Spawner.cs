@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Spawner : MonoBehaviour {
 	public GameObject[] spring;
 
-	void Start ()
+	private void Start ()
 	{
 		SpawnObjects ();
 	}
 
-	void SpawnObjects()
+	private void SpawnObjects()
 	{
-		int randomIndex = (int)Random.Range(0, 4);
-		Vector3 randomPosition = new Vector3 (Random.Range(-13,13), transform.position.y + 3.8f, 0f);
+		var randomIndex = Random.Range(0, 4);
+		var randomPosition = new Vector3 (Random.Range(-4f,4f), transform.position.y + 3.8f, 0f);
 		Instantiate (spring[randomIndex], randomPosition, Quaternion.identity);
-		Invoke ("SpawnObjects", 0.5f);
+		Invoke (nameof(SpawnObjects), 1);
 	}
 }
