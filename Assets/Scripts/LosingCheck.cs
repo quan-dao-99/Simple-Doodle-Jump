@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LosingCheck : MonoBehaviour {
-	private UIManager UIManager;
+public class LosingCheck : MonoBehaviour
+{
+    [SerializeField] private Score score;
 
-	void Awake ()
-	{
-		UIManager = FindObjectOfType<UIManager>();
-	}
+    private UIManager UIManager;
 
-	void OnTriggerStay2D (Collider2D other)
-	{
-		if (other.CompareTag("Player"))
-		{
-			UIManager.ShowLoseMenu();
-		}
-	}
+    void Awake()
+    {
+        UIManager = FindObjectOfType<UIManager>();
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            UIManager.ShowLoseMenu();
+        }
+    }
 }

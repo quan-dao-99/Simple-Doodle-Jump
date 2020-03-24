@@ -5,7 +5,8 @@ public class Score : MonoBehaviour
 {
     public TextMeshProUGUI scoreTxt;
 
-    private int _score;
+    private static int _score;
+    public static int CurrentScore => _score;
 
     private void Update()
     {

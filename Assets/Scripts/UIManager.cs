@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class UIManager : MonoBehaviour
 {
     private GameplayUI gameplayUI;
+
     private void Awake()
     {
         if (SceneManager.GetActiveScene().buildIndex == 2)
@@ -14,6 +15,7 @@ public class UIManager : MonoBehaviour
             gameplayUI = FindObjectOfType<GameplayUI>();
         }
     }
+
     public void Resume()
     {
         gameplayUI.isOpened = false;
@@ -28,10 +30,10 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
-	public void Quit()
-	{
-		Application.Quit();
-	}
+    public void Quit()
+    {
+        Application.Quit();
+    }
 
     public void Retry()
     {
@@ -40,9 +42,15 @@ public class UIManager : MonoBehaviour
 
     public void ShowLoseMenu()
     {
+        Social.ReportScore(Score.CurrentScore, GPGSIds.leaderboard_highscore, (b => { }));
         gameplayUI.isOpened = true;
         gameplayUI.loseMenu.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    public void ShowLeaderboard()
+    {
+        Social.ShowLeaderboardUI();
     }
 
     public void Play()

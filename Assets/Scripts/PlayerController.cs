@@ -1,43 +1,39 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float maxSpeed;
     [SerializeField] private float moveForce;
+    [SerializeField] private float telePoint = 5f;
 
     private float _move;
-    private Transform _transform;
-    private Rigidbody2D _rigidbody2D;
-    private float _screenSizeInPixels;
 
-    private void Awake()
+    private Vector3 position
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _transform = transform;
-        _screenSizeInPixels = Screen.width / Screen.dpi;
+        get => transform.position;
+        set => transform.position = value;
     }
 
     private void Update()
     {
-        _move = Input.GetAxis("Horizontal");
+        _move = Input.acceleration.x;
+
+        var targetMove = Mathf.Clamp(_move * moveForce * Time.deltaTime, -maxSpeed, maxSpeed);
+        position += new Vector3(targetMove,  0f, 0f);
         
-        if (_transform.position.x > _screenSizeInPixels)
+        if (position.x > telePoint)
         {
-            _transform.position = new Vector2(-_screenSizeInPixels, _transform.position.y);
+            position = new Vector2(-telePoint, position.y);
         }
-        else if (_transform.position.x < -_screenSizeInPixels)
+        else if (position.x < -telePoint)
         {
-            _transform.position = new Vector2(Screen.width / Screen.dpi, _transform.position.y);
+            position = new Vector2(telePoint, position.y);
         }
     }
 
-    private void FixedUpdate()
+    private void OnDrawGizmosSelected()
     {
-        _rigidbody2D.velocity = new Vector2(_move * moveForce, _rigidbody2D.velocity.y);
-        if (_rigidbody2D.velocity.x > maxSpeed)
-        {
-            _rigidbody2D.velocity = new Vector2(maxSpeed, _rigidbody2D.velocity.y);
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(new Vector3(-telePoint, 0f), new Vector3(telePoint, 0f));
     }
 }
